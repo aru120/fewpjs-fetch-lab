@@ -14,3 +14,20 @@ function renderBooks(books) {
 document.addEventListener('DOMContentLoaded', function() {
   fetchBooks()
 })
+
+fetch('https://anapioficeandfire.com/api/books')
+.then(resp => resp.json())
+.then(data => {
+    console.log(data)
+    debugger
+    renderBooks(data)
+    fifthBook(data[4]["name"])    
+  })
+
+  const fifthBook = book => {
+    const main = document.querySelector('main')
+    const h4 = document.createElement('h4')
+    h4.textContent = `Fifth Book: ${book}`
+    
+    main.appendChild(h4)
+  }
